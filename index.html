@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Certificate Upload Portal</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background-color: #FDFBF7;
+    }
+    .bg-cream-card {
+      background-color: #FFFDF9;
+    }
+    .text-burgundy {
+      color: #800020;
+    }
+    .bg-burgundy {
+      background-color: #800020;
+    }
+    .bg-burgundy:hover {
+      background-color: #600018;
+    }
+    .border-burgundy-focus:focus {
+      border-color: #800020;
+      outline: none;
+      ring-color: #800020;
+    }
+  </style>
+</head>
+<body class="flex flex-col items-center justify-center min-h-screen p-4">
+
+  <div class="max-w-xl w-full bg-cream-card rounded-2xl shadow-xl p-8 border border-[#E8DFD1] relative">
+    
+    <!-- Header -->
+    <div class="text-center mb-8">
+      <h2 class="text-3xl font-bold text-burgundy tracking-wide">Student Certificate Portal</h2>
+      <p class="text-sm text-stone-600 mt-2">Upload your certificates for current month achievements only.</p>
+    </div>
+
+    <form id="uploadForm" onsubmit="handleFormSubmit(event)" class="space-y-5">
+      
+      <!-- Roll Number & Name -->
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <label class="block text-sm font-semibold text-stone-700">Roll Number</label>
+          <input type="text" id="rollNo" required class="mt-1 block w-full rounded-lg border-[#D1C7BD] shadow-sm border p-2.5 bg-[#FAF8F5] focus:bg-white border-burgundy-focus transition-all">
+        </div>
+        <div>
+          <label class="block text-sm font-semibold text-stone-700">Name</label>
+          <input type="text" id="name" required class="mt-1 block w-full rounded-lg border-[#D1C7BD] shadow-sm border p-2.5 bg-[#FAF8F5] focus:bg-white border-burgundy-focus transition-all">
+        </div>
+      </div>
+
+      <!-- Year & Section -->
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <label class="block text-sm font-semibold text-stone-700">Year</label>
+          <select id="year" required class="mt-1 block w-full rounded-lg border-[#D1C7BD] shadow-sm border p-2.5 bg-[#FAF8F5] focus:bg-white border-burgundy-focus transition-all">
+            <option value="I Year">I Year</option>
+            <option value="II Year">II Year</option>
+            <option value="III Year">III Year</option>
+            <option value="IV Year">IV Year</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-sm font-semibold text-stone-700">Section</label>
+          <input type="text" id="section" placeholder="e.g. A, B, C" required class="mt-1 block w-full rounded-lg border-[#D1C7BD] shadow-sm border p-2.5 bg-[#FAF8F5] focus:bg-white border-burgundy-focus transition-all">
+        </div>
+      </div>
+
+      <!-- Certificate Type (Updated Options) -->
+      <div>
+        <label class="block text-sm font-semibold text-stone-700">Certificate Type</label>
+        <select id="certType" required class="mt-1 block w-full rounded-lg border-[#D1C7BD] shadow-sm border p-2.5 bg-[#FAF8F5] focus:bg-white border-burgundy-focus transition-all">
+          <option value="Courses">Courses</option>
+          <option value="Hackathons">Hackathons</option>
+          <option value="Internships">Internships</option>
+          <option value="Publications">Publications</option>
+          <option value="Seminars">Seminars</option>
+          <option value="Workshops">Workshops</option>
+          <option value="Participations (Award and others)">Participations (Award and others)</option>
+        </select>
+      </div>
+
+      <!-- Title -->
+      <div>
+        <label class="block text-sm font-semibold text-stone-700">Title of Certificate</label>
+        <input type="text" id="title" required class="mt-1 block w-full rounded-lg border-[#D1C7BD] shadow-sm border p-2.5 bg-[#FAF8F5] focus:bg-white border-burgundy-focus transition-all">
+      </div>
+
+      <!-- Authority -->
+      <div>
+        <label class="block text-sm font-semibold text-stone-700">Authority (Who conducted / Issued by)</label>
+        <input type="text" id="auth" required class="mt-1 block w-full rounded-lg border-[#D1C7BD] shadow-sm border p-2.5 bg-[#FAF8F5] focus:bg-white border-burgundy-focus transition-all">
+      </div>
+
+      <!-- Date (Restricted to Current Month) -->
+      <div>
+        <label class="block text-sm font-semibold text-stone-700">
+          Date of Certificate <span class="text-xs text-burgundy font-normal">(Current month only)</span>
+        </label>
+        <input type="date" id="date" required class="mt-1 block w-full rounded-lg border-[#D1C7BD] shadow-sm border p-2.5 bg-[#FAF8F5] focus:bg-white border-burgundy-focus transition-all">
+      </div>
+
+      <!-- File Upload -->
+      <div>
+        <label class="block text-sm font-semibold text-stone-700">Upload Certificate File</label>
+        <input type="file" id="file" required class="mt-1 block w-full text-sm text-stone-600 file:mr-4 file:py-2.5 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-[#800020] file:text-white hover:file:bg-[#600018] border border-[#D1C7BD] rounded-lg p-1 bg-[#FAF8F5]">
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit" id="submitBtn" class="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-md text-sm font-semibold text-white bg-burgundy transition-all duration-200 cursor-pointer">
+        Submit Certificate
+      </button>
+
+      <div id="statusMessage" class="hidden text-center mt-4 p-3 rounded-lg font-medium text-sm"></div>
+
+    </form>
+
+    <!-- Developer Credit Footer -->
+    <div class="mt-8 pt-4 border-t border-[#E8DFD1] text-center">
+      <p class="text-xs font-semibold text-stone-500 tracking-wider uppercase">
+        Designed & Developed by <span class="text-burgundy font-bold text-sm">PRUDHVI</span>
+      </p>
+    </div>
+
+  </div>
+
+  <script>
+    // Dynamically set calendar min & max dates to match the current month
+    window.addEventListener('DOMContentLoaded', () => {
+      const now = new Date();
+      const year = now.getFullYear();
+      const month = String(now.getMonth() + 1).padStart(2, '0');
+      
+      const lastDay = new Date(year, now.getMonth() + 1, 0).getDate();
+      
+      const minDate = `${year}-${month}-01`;
+      const maxDate = `${year}-${month}-${String(lastDay).padStart(2, '0')}`;
+      
+      const dateInput = document.getElementById('date');
+      dateInput.min = minDate;
+      dateInput.max = maxDate;
+    });
+
+    function handleFormSubmit(event) {
+      event.preventDefault();
+      
+      const fileInput = document.getElementById('file');
+      if (fileInput.files.length === 0) return;
+
+      const file = fileInput.files[0];
+      const reader = new FileReader();
+      const submitBtn = document.getElementById('submitBtn');
+      const statusMsg = document.getElementById('statusMessage');
+
+      submitBtn.disabled = true;
+      submitBtn.innerText = "Uploading... Please wait.";
+      submitBtn.classList.replace('bg-burgundy', 'bg-stone-400');
+      statusMsg.classList.add('hidden');
+
+      reader.onload = function(e) {
+        const base64Data = e.target.result.split(',')[1]; 
+
+        const formData = {
+          rollNo: document.getElementById('rollNo').value,
+          name: document.getElementById('name').value,
+          year: document.getElementById('year').value,
+          section: document.getElementById('section').value,
+          certType: document.getElementById('certType').value,
+          title: document.getElementById('title').value,
+          auth: document.getElementById('auth').value,
+          date: document.getElementById('date').value,
+          fileData: base64Data,
+          fileMimeType: file.type,
+          fileOriginalName: file.name,
+          fileName: file.name 
+        };
+
+        google.script.run
+          .withSuccessHandler(function(response) {
+            statusMsg.innerText = response;
+            if (response.startsWith("Error")) {
+              statusMsg.classList.remove('hidden', 'bg-emerald-100', 'text-emerald-800');
+              statusMsg.classList.add('bg-rose-100', 'text-rose-800', 'border', 'border-rose-200');
+            } else {
+              statusMsg.classList.remove('hidden', 'bg-rose-100', 'text-rose-800');
+              statusMsg.classList.add('bg-emerald-100', 'text-emerald-800', 'border', 'border-emerald-200');
+              document.getElementById('uploadForm').reset();
+            }
+            resetButton(submitBtn);
+          })
+          .withFailureHandler(function(error) {
+            statusMsg.innerText = "Upload failed. Please check your connection and try again.";
+            statusMsg.classList.remove('hidden', 'bg-emerald-100', 'text-emerald-800');
+            statusMsg.classList.add('bg-rose-100', 'text-rose-800', 'border', 'border-rose-200');
+            resetButton(submitBtn);
+          })
+          .processForm(formData);
+      };
+
+      reader.readAsDataURL(file);
+    }
+
+    function resetButton(btn) {
+      btn.disabled = false;
+      btn.innerText = "Submit Certificate";
+      btn.classList.replace('bg-stone-400', 'bg-burgundy');
+    }
+  </script>
+</body>
+</html>
