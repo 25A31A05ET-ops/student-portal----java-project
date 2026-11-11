@@ -1,0 +1,13 @@
+ABSTRACT
+
+The Student Certificate Upload Portal is a web-based application developed using Google Apps Script, HTML, CSS, JavaScript, Google Drive, and Google Sheets to simplify and automate the process of collecting and managing student achievement certificates.
+
+The main objective of this project is to provide a centralized platform where students can submit their certificates related to courses, hackathons, internships, publications, seminars, workshops, and other participations. Students are required to enter their personal and academic details, certificate information, issuing authority, and date of achievement, along with uploading the certificate file.
+
+The system includes a date validation mechanism that allows students to upload certificates earned only during the current month. After successful validation, the uploaded certificate is automatically stored in the appropriate category-based folder in Google Drive. The student's details and certificate information are simultaneously recorded in Google Sheets for easy access and management.
+
+The application provides a simple, user-friendly interface with real-time submission status messages, helping students complete the uploading process efficiently. It reduces manual paperwork, improves data organization, minimizes administrative effort, and provides a systematic approach to maintaining student achievement records.
+
+Thus, the Student Certificate Upload Portal offers an efficient, accessible, and organized solution for digital certificate collection and management in educational institutions.
+
+Keywords: Google Apps Script, HTML, CSS, JavaScript, Google Drive, Google Sheets, Certificate Management, Student Achievement.
