@@ -1,0 +1,53 @@
+Algorithm: Student Certificate Upload Portal
+
+Step 1: Start the application.
+
+Step 2: Display the Student Certificate Upload Portal.
+
+Step 3: Accept the following details from the student:
+
+Roll Number
+
+Name
+
+Year
+
+Section
+
+Certificate Type
+
+Certificate Title
+
+Issuing Authority
+
+Date of Certificate
+
+Certificate File
+
+Step 4: Check whether all required fields are entered.
+
+Step 5: Check whether the certificate date belongs to the current month and current year.
+
+Step 6: If the date is invalid, display an error message and stop the upload process.
+
+Step 7: If the date is valid, access the parent folder in Google Drive.
+
+Step 8: Search for a subfolder matching the selected certificate type.
+
+Step 9: If the folder exists, select it; otherwise, create a new folder.
+
+Step 10: Convert the uploaded Base64 data into a file blob.
+
+Step 11: Rename the certificate using the student's Roll Number and file extension.
+
+Step 12: Upload the certificate into the selected Google Drive folder.
+
+Step 13: Format the certificate date into DD-MM-YYYY format.
+
+Step 14: Open the Google Spreadsheet and append the student details.
+
+Step 15: Display the success message.
+
+Step 16: If an exception occurs, display an error message.
+
+Step 17: Stop.
